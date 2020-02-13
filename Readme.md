@@ -15,7 +15,7 @@ Code licensed under the MIT license. Written by Lars Mueller alias LMD or appgur
 * [Minetest Forum](https://forum.minetest.net/viewtopic.php?f=9&t=24211) - (more organized) discussion
 * [ContentDB](https://content.minetest.net/packages/LMD/dash/) - releases (cloning from GitHub is recommended)
 
-## Screenshots
+## Symbolic Representation
 
 ![Screenshot](screenshot.png)
 
