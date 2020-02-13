@@ -1,0 +1,11 @@
+{
+    "hold": true,
+    "dashing": 1,
+    "charging": 3,
+    "polynomial": [0.2, 0.5, 1],
+    "effects": {
+        "speed": 2,
+        "jump": 0.5,
+        "gravity": -0.1
+    }
+}
