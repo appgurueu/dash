@@ -33,6 +33,10 @@ Dash by holding/pressing the "special" key (usually <kbd>E</kbd>). A timer shows
 
 Whether to hold or press the special key.
 
+### `particles`
+
+Maximum of node particles to be spawned when somebody is dashing. Set to zero for no particles.
+
 ### `charging`
 
 Time it takes to charge a dash in seconds.

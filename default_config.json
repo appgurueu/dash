@@ -1,5 +1,6 @@
 {
     "hold": true,
+    "particles": 5,
     "dashing": 1,
     "charging": 3,
     "polynomial": [0.2, 0.5, 1],
