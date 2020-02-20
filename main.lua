@@ -129,29 +129,32 @@ minetest.register_globalstep(
                 else
                     if particles then
                         local player_pos = minetest.get_player_by_name(player):get_pos()
+                        local nodename = minetest.get_node({x = player_pos.x, y = player_pos.y - 1, z = player_pos.z}).name
                         local minp = {x = player_pos.x - 0.5, y = player_pos.y + 0.1, z = player_pos.z - 0.5}
                         local maxp = {x = player_pos.x + 0.5, y = player_pos.y + 0.1, z = player_pos.z + 0.5}
-                        minetest.add_particlespawner(
-                            {
-                                amount = 2 + math.floor(math.random() * ((particles * dtime)-1)),
-                                time = 1.5,
-                                minvel = {x = -0.2, y = 0.1, z = -0.2},
-                                maxvel = {x = 0.2, y = 0.3, z = 0.2},
-                                minacc = {x = -0.05, y = -0.2, z = -0.05},
-                                maxacc = {x = 0.05, y = -0.1, z = 0.05},
-                                minexptime = 2,
-                                maxexptime = 4,
-                                minsize = 0.2,
-                                maxsize = 1,
-                                collisiondetection = true,
-                                vertical = false,
-                                texture = modlib.minetest.get_node_inventory_image(
-                                    minetest.get_node({x = player_pos.x, y = player_pos.y - 1, z = player_pos.z}).name
-                                ),
-                                minpos = minp,
-                                maxpos = maxp
-                            }
-                        )
+                        if nodename ~= "air" then
+                            minetest.add_particlespawner(
+                                {
+                                    amount = 2 + math.floor(math.random() * ((particles * dtime)-1)),
+                                    time = 1.5,
+                                    minvel = {x = -0.2, y = 0.1, z = -0.2},
+                                    maxvel = {x = 0.2, y = 0.3, z = 0.2},
+                                    minacc = {x = -0.05, y = -0.2, z = -0.05},
+                                    maxacc = {x = 0.05, y = -0.1, z = 0.05},
+                                    minexptime = 2,
+                                    maxexptime = 4,
+                                    minsize = 0.2,
+                                    maxsize = 1,
+                                    collisiondetection = true,
+                                    vertical = false,
+                                    texture = modlib.minetest.get_node_inventory_image(
+                                        nodename
+                                    ),
+                                    minpos = minp,
+                                    maxpos = maxp
+                                }
+                            )
+                        end
                     end
                     local next = dash_function(state)
                     dash_effects(player, next)

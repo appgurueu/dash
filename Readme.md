@@ -45,7 +45,7 @@ Time it takes to charge a dash in seconds.
 
 Time it takes to dash in seconds.
 
-### polynomial
+### `polynomial`
 
 A polynomial definining the dashing intensity. List of coefficients starting with x<sup>0</sup>.
 
