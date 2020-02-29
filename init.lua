@@ -1,1 +1,1 @@
-include_mod("dash")
+modlib.mod.init("dash")
