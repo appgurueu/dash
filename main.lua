@@ -81,8 +81,7 @@ function charging_complete(name)
 end
 
 function dash_effects_dir(dir)
-    return function(name, intensity)
-        local player = minetest.get_player_by_name(name)
+    return function(player, intensity)
         local physics = player:get_physics_override()
         for effect, factor in pairs(effects) do
             physics[effect] = dir(physics[effect], factor * intensity)
@@ -91,14 +90,12 @@ function dash_effects_dir(dir)
     end
 end
 
-dash_effects =
-    dash_effects_dir(
+dash_effects = dash_effects_dir(
     function(a, b)
         return a + b
     end
 )
-dash_effects_reverse =
-    dash_effects_dir(
+dash_effects_reverse = dash_effects_dir(
     function(a, b)
         return a - b
     end
@@ -106,13 +103,15 @@ dash_effects_reverse =
 
 color = "FFBF00"
 
-minetest.register_globalstep(
-    function(dtime)
-        for player, state in pairs(players) do
-            local aux1 = minetest.get_player_by_name(player):get_player_control().aux1
+minetest.register_globalstep(function(dtime)
+    for player, state in pairs(players) do
+        local ref = minetest.get_player_by_name(player)
+        local physics = ref:get_physics_override()
+        if ref:get_hp() >= 0 and (physics.speed > 0 or physics.jump ~= 0 or physics.gravity ~= 0) and not (player_api and player_api.player_attached[player]) then
+            local aux1 = ref:get_player_control().aux1
             if state >= dashing_state then
                 local previous = dash_function(state)
-                dash_effects_reverse(player, previous)
+                dash_effects_reverse(ref, previous)
                 state = state + dtime
                 if state >= dashing or hold ~= aux1 then
                     state = charging_state
@@ -128,7 +127,7 @@ minetest.register_globalstep(
                     )
                 else
                     if particles then
-                        local player_pos = minetest.get_player_by_name(player):get_pos()
+                        local player_pos = ref:get_pos()
                         local nodename = minetest.get_node({x = player_pos.x, y = player_pos.y - 1, z = player_pos.z}).name
                         local minp = {x = player_pos.x - 0.5, y = player_pos.y + 0.1, z = player_pos.z - 0.5}
                         local maxp = {x = player_pos.x + 0.5, y = player_pos.y + 0.1, z = player_pos.z + 0.5}
@@ -157,7 +156,7 @@ minetest.register_globalstep(
                         end
                     end
                     local next = dash_function(state)
-                    dash_effects(player, next)
+                    dash_effects(ref, next)
                 end
                 players[player] = state
             elseif state == can_dash and aux1 then
@@ -175,4 +174,4 @@ minetest.register_globalstep(
             end
         end
     end
-)
+end)
