@@ -1,47 +1,43 @@
-config =
-    modlib.conf.import(
-    "dash",
-    {
-        type = "table",
-        children = {
-            polynomial = {
-                type = "table",
-                keys = {
-                    type = "number"
-                },
-                values = {
-                    type = "number"
-                }
+config = modlib.conf.import("dash", {
+    type = "table",
+    children = {
+        polynomial = {
+            type = "table",
+            keys = {
+                type = "number"
             },
-            effects = {
-                type = "table",
-                keys = {
-                    type = "string",
-                    possible_values = {speed = true, jump = true, gravity = true}
-                },
-                values = {
-                    type = "number",
-                    range = {-10, 10}
-                }
-            },
-            dashing = {
-                type = "number",
-                range = {0, 10}
-            },
-            charging = {
-                type = "number",
-                range = {0, 10}
-            },
-            particles = {
-                type = "number",
-                range = {0, 100}
-            },
-            hold = {
-                type = "boolean"
+            values = {
+                type = "number"
             }
+        },
+        effects = {
+            type = "table",
+            keys = {
+                type = "string",
+                possible_values = {speed = true, jump = true, gravity = true}
+            },
+            values = {
+                type = "number",
+                range = {-10, 10}
+            }
+        },
+        dashing = {
+            type = "number",
+            range = {0, 10}
+        },
+        charging = {
+            type = "number",
+            range = {0, 10}
+        },
+        particles = {
+            type = "number",
+            range = {0, 100}
+        },
+        hold = {
+            type = "boolean"
         }
     }
-)
+})
 modlib.table.add_all(getfenv(1), config)
 
 players = {}
@@ -55,7 +51,7 @@ function polynomial_from_table(pol)
     return function(x)
         local r = 0
         local b = x
-        for p, c in ipairs(pol) do
+        for _, c in ipairs(pol) do
             r = r + c * b
             b = b * x
         end

@@ -1,0 +1,5 @@
+dash.charging (Dash charging) float 3 0.000000 10.000000
+
+dash.dashing (Dash dashing) float 1 0.000000 10.000000
+dash.hold (Dash hold) bool true
+dash.particles (Dash particles) float 5 0.000000 100.000000
