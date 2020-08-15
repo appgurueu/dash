@@ -1,1 +1,1 @@
-modlib.mod.init("dash")
+modlib.mod.init()
