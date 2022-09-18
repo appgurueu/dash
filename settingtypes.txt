@@ -1,5 +1,24 @@
-dash.charging (Dash charging) float 3 0.000000 10.000000
+# Time it takes to charge a dash in seconds.
+dash.charging (Dash Charging) float 3 0.000000 10.000000
 
-dash.dashing (Dash dashing) float 1 0.000000 10.000000
-dash.hold (Dash hold) bool true
-dash.particles (Dash particles) float 5 0.000000 100.000000
+# Time it takes to dash in seconds.
+dash.dashing (Dash Dashing) float 1 0.000000 10.000000
+
+# Whether to hold or press the special key.
+dash.hold (Dash Hold) bool true
+
+# Maximum of node particles to be spawned when somebody is dashing. Set to zero for no particles.
+dash.particles (Dash Particles) float 5 0.000000 100.000000
+
+[dash.effects]
+
+# Additive gravity modifier
+dash.effects.gravity (Dash Effects Gravity) float -0.1 -10.000000 10.000000
+
+# Additive jump modifier
+dash.effects.jump (Dash Effects Jump) float 0.5 -10.000000 10.000000
+
+# Multiplicative speed modifier
+dash.effects.speed (Dash Effects Speed) float 2 -10.000000 10.000000
+
+[dash.polynomial]

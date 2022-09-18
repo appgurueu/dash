@@ -1,43 +1,4 @@
-config = modlib.conf.import("dash", {
-    type = "table",
-    children = {
-        polynomial = {
-            type = "table",
-            keys = {
-                type = "number"
-            },
-            values = {
-                type = "number"
-            }
-        },
-        effects = {
-            type = "table",
-            keys = {
-                type = "string",
-                possible_values = {speed = true, jump = true, gravity = true}
-            },
-            values = {
-                type = "number",
-                range = {-10, 10}
-            }
-        },
-        dashing = {
-            type = "number",
-            range = {0, 10}
-        },
-        charging = {
-            type = "number",
-            range = {0, 10}
-        },
-        particles = {
-            type = "number",
-            range = {0, 100}
-        },
-        hold = {
-            type = "boolean"
-        }
-    }
-})
+config = modlib.mod.configuration()
 modlib.table.add_all(getfenv(1), config)
 
 players = {}

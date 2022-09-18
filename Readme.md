@@ -29,38 +29,72 @@ Dash by holding/pressing the "special" key (usually <kbd>E</kbd>). A timer shows
 
 ## Configuration
 
-### `hold`
-
-Whether to hold or press the special key.
-
-### `particles`
-
-Maximum of node particles to be spawned when somebody is dashing. Set to zero for no particles.
-
+<!--modlib:conf:2-->
 ### `charging`
 
 Time it takes to charge a dash in seconds.
+
+* Type: number
+* Default: `3`
+* &gt;= `0`
+* &lt;= `10`
 
 ### `dashing`
 
 Time it takes to dash in seconds.
 
-### `polynomial`
-
-A polynomial definining the dashing intensity. List of coefficients starting with x<sup>0</sup>.
+* Type: number
+* Default: `1`
+* &gt;= `0`
+* &lt;= `10`
 
 ### `effects`
 
-Effects on the player.
+#### `gravity`
 
-#### `speed`
+Additive gravity modifier
 
-Number. Adds.
+* Type: number
+* Default: `-0.1`
+* &gt;= `-10`
+* &lt;= `10`
 
 #### `jump`
 
-Additional jump height.
+Additive jump modifier
 
-#### `gravity`
+* Type: number
+* Default: `0.5`
+* &gt;= `-10`
+* &lt;= `10`
 
-Additional gravity.
+#### `speed`
+
+Multiplicative speed modifier
+
+* Type: number
+* Default: `2`
+* &gt;= `-10`
+* &lt;= `10`
+
+
+### `hold`
+
+Whether to hold or press the special key.
+
+* Type: boolean
+* Default: `true`
+
+### `particles`
+
+Maximum of node particles to be spawned when somebody is dashing. Set to zero for no particles.
+
+* Type: number
+* Default: `5`
+* &gt;= `0`
+* &lt;= `100`
+
+### `polynomial`
+
+A polynomial definining the dashing intensity. List of coefficients starting with the one for `x^0`.
+<!--modlib:conf-->
